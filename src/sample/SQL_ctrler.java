@@ -83,7 +83,7 @@ public class SQL_ctrler{
         try {
             stmt = c.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-
+            int iteration = 0;
             while(rs.next()){
                 String p1name = rs.getString("Player1");
                 String p2name = rs.getString("Player2");
@@ -97,6 +97,7 @@ public class SQL_ctrler{
                     gs.addPlayer2Points(p2point);
                     gs.addPlayer1Manches(p1manche);
                     gs.addPlayer2Manches(p2manche);
+                    gs.setDeltaPOints(new DeltaPoint(p1manche-p2manche, iteration));
                     if(p1manche == p2manche){
                         gs.addPartiesNulles();
                     }
@@ -112,6 +113,7 @@ public class SQL_ctrler{
                     gs.addPlayer2Points(p1point);
                     gs.addPlayer1Manches(p2manche);
                     gs.addPlayer2Manches(p1manche);
+                    gs.setDeltaPOints(new DeltaPoint(p2manche-p1manche, iteration));
                     if(p1manche == p2manche){
                         gs.addPartiesNulles();
                     }
@@ -122,7 +124,7 @@ public class SQL_ctrler{
                         gs.addPlayer1Parties();
                     }
                 }
-
+                iteration++;
             }
 
         }catch( Exception e ){

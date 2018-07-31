@@ -63,10 +63,6 @@ public class Controller {
     //private LineChart<> statsLineChart;
 
     @FXML
-    private ComboBox<Person> stats_p1;
-    @FXML
-    private ComboBox<Person> stats_p2;
-    @FXML
     private Button stats_get_data;
 
 
@@ -176,82 +172,16 @@ public class Controller {
                 return null;
             }
         });
-        player2.setOnAction((event)->{
-            Person selectedPerson = player2.getSelectionModel().getSelectedItem();
-            pointsTable_col2.setText(selectedPerson.getLastName());
-        });
-        stats_p1.setItems(playerData);
-        stats_p1.setCellFactory((combobox) -> {
-            return new ListCell<Person>(){
-                @Override
-                protected void updateItem(Person item, boolean empty){
-                    super.updateItem(item, empty);
-
-                    if (item == null || empty){
-                        setText(null);
-                    } else{
-                        setText(item.getLastName());
-                    }
-                }
-            };
-        });
-        stats_p1.setConverter(new StringConverter<Person>() {
-            @Override
-            public String toString(Person object) {
-                if (object == null){
-                    return null;
-                } else {
-                    return object.getLastName();
-                }
-            }
-
-            @Override
-            public Person fromString(String string) {
-                return null;
-            }
-        });
-        stats_p1.setOnAction((event)->{
-            Person selectedPerson = stats_p1.getSelectionModel().getSelectedItem();
-        });
-        stats_p2.setItems(playerData);
-        stats_p2.setCellFactory((combobox) -> {
-            return new ListCell<Person>(){
-                @Override
-                protected void updateItem(Person item, boolean empty){
-                    super.updateItem(item, empty);
-
-                    if (item == null || empty){
-                        setText(null);
-                    } else{
-                        setText(item.getLastName());
-                    }
-                }
-            };
-        });
-        stats_p2.setConverter(new StringConverter<Person>() {
-            @Override
-            public String toString(Person object) {
-                if (object == null){
-                    return null;
-                } else {
-                    return object.getLastName();
-                }
-            }
-
-            @Override
-            public Person fromString(String string) {
-                return null;
-            }
-        });
-        stats_p2.setOnAction((event)->{
-            Person selectedPerson = stats_p2.getSelectionModel().getSelectedItem();
-        });
+        player2.setOnAction((event)-> {
+                    Person selectedPerson = player2.getSelectionModel().getSelectedItem();
+                    pointsTable_col2.setText(selectedPerson.getLastName());
+                });
         stats_get_data.setOnAction((event)->{
             SQL_ctrler sc = new SQL_ctrler();
             GameStats gs = new GameStats();
-            String player1 = stats_p1.getSelectionModel().getSelectedItem().getLastName();
-            String player2 = stats_p2.getSelectionModel().getSelectedItem().getLastName();
-            gs = sc.getGame(player1, player2);
+            String pl1 = player1.getSelectionModel().getSelectedItem().getLastName();
+            String pl2 = player2.getSelectionModel().getSelectedItem().getLastName();
+            gs = sc.getGame(pl1, pl2);
             int p1m = gs.getPlayer1_manches();
             int p2m = gs.getPlayer2_manches();
             int p1p = gs.getPlayer1_parties();
@@ -262,20 +192,20 @@ public class Controller {
 
             ObservableList<PieChart.Data> pieChartData =
                     FXCollections.observableArrayList(
-                            new PieChart.Data(player1 + " " + Integer.toString(p1p), p1p),
-                            new PieChart.Data(player2 + " " + Integer.toString(p2p), p2p),
+                            new PieChart.Data(pl1 + " " + Integer.toString(p1p), p1p),
+                            new PieChart.Data(pl2 + " " + Integer.toString(p2p), p2p),
                             new PieChart.Data("nulles " + Integer.toString(np), np));
             partiesJoues.setData(pieChartData);
             //manchesJoues
             ObservableList<PieChart.Data> pieChartData2 =
                     FXCollections.observableArrayList(
-                            new PieChart.Data(player1 + " " + Integer.toString(p1m), p1m),
-                            new PieChart.Data(player2 + " " + Integer.toString(p2m), p2m));
+                            new PieChart.Data(pl1 + " " + Integer.toString(p1m), p1m),
+                            new PieChart.Data(pl2 + " " + Integer.toString(p2m), p2m));
             manchesJoues.setData(pieChartData2);
             ObservableList<PieChart.Data> pieChartData3 =
                     FXCollections.observableArrayList(
-                            new PieChart.Data(player1 + " " + Integer.toString(p1pts), p1pts),
-                            new PieChart.Data(player2 + " " + Integer.toString(p2pts), p2pts));
+                            new PieChart.Data(pl1 + " " + Integer.toString(p1pts), p1pts),
+                            new PieChart.Data(pl2 + " " + Integer.toString(p2pts), p2pts));
             pointsJoues.setData(pieChartData3);
             }
         );

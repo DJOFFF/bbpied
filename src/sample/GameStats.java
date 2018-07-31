@@ -1,5 +1,12 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class GameStats {
 
     private int player1_parties = 0;
@@ -9,8 +16,19 @@ public class GameStats {
     private int parties_nulles = 0;
     private int player1_manches = 0;
     private int player2_manches = 0;
+    private int player1_blanchissage = 0;
+    private int player2_blanchissage = 0;
+    private ObservableList<DeltaPoint> deltapoints = FXCollections.observableArrayList();
 
     public GameStats(){};
+
+    public void analyzeGame(String Game){
+        List<String> splittedGame = new ArrayList();
+        if(Game.contains(";"))
+            splittedGame = Arrays.asList(Game.split(";"));
+        else
+            splittedGame.add(Game);
+    }
 
     public void addPlayer1Parties(){
         player1_parties += 1;
@@ -40,6 +58,10 @@ public class GameStats {
         player2_points += points;
     }
 
+    public void setDeltaPOints(DeltaPoint dp){
+        deltapoints.add(dp);
+    }
+
     public int getPlayer1_parties(){
         return player1_parties;
     }
@@ -66,5 +88,9 @@ public class GameStats {
 
     public int getPlayer2_points() {
         return player2_points;
+    }
+
+    public ObservableList<DeltaPoint> getDeltapoints() {
+        return deltapoints;
     }
 }
