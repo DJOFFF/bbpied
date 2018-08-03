@@ -2,11 +2,7 @@ package sample;
 
 import javafx.collections.ObservableList;
 
-import javax.xml.transform.Result;
 import java.sql.*;
-
-import static jdk.nashorn.internal.objects.Global.print;
-import static jdk.nashorn.internal.objects.Global.println;
 
 public class SQL_ctrler{
 
@@ -83,7 +79,7 @@ public class SQL_ctrler{
         try {
             stmt = c.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            int iteration = 0;
+
             while(rs.next()){
                 String p1name = rs.getString("Player1");
                 String p2name = rs.getString("Player2");
@@ -91,40 +87,13 @@ public class SQL_ctrler{
                 int p2manche = rs.getInt("TotalMancheP2");
                 int p1point = rs.getInt("TotalPointP1");
                 int p2point = rs.getInt("TotalPointP2");
+                String score = rs.getString("Score");
 
                 if(p1name.equals(player1)){
-                    gs.addPlayer1Points(p1point);
-                    gs.addPlayer2Points(p2point);
-                    gs.addPlayer1Manches(p1manche);
-                    gs.addPlayer2Manches(p2manche);
-                    gs.setDeltaPOints(new DeltaPoint(p1manche-p2manche, iteration));
-                    if(p1manche == p2manche){
-                        gs.addPartiesNulles();
-                    }
-                    else if(p1manche>p2manche){
-                        gs.addPlayer1Parties();
-                    }
-                    else{
-                        gs.addPlayer2Parties();
-                    }
+                    gs.addData(p1point, p2point, p1manche, p2manche, score, false);
+                } else{
+                    gs.addData(p2point, p1point, p2manche, p1manche, score, true);
                 }
-                else{
-                    gs.addPlayer1Points(p2point);
-                    gs.addPlayer2Points(p1point);
-                    gs.addPlayer1Manches(p2manche);
-                    gs.addPlayer2Manches(p1manche);
-                    gs.setDeltaPOints(new DeltaPoint(p2manche-p1manche, iteration));
-                    if(p1manche == p2manche){
-                        gs.addPartiesNulles();
-                    }
-                    else if(p1manche>p2manche){
-                        gs.addPlayer2Parties();
-                    }
-                    else{
-                        gs.addPlayer1Parties();
-                    }
-                }
-                iteration++;
             }
 
         }catch( Exception e ){

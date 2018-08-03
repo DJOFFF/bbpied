@@ -1,25 +1,18 @@
 package sample;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
-
-import java.awt.*;
 
 public class Controller {
 
@@ -59,8 +52,14 @@ public class Controller {
     @FXML
     private PieChart pointsJoues;
 
-    //@FXML
-    //private LineChart<> statsLineChart;
+    @FXML
+    private LineChart deltaPoints;
+    @FXML
+    private LineChart deltaManches;
+    @FXML
+    private LineChart deltaGames;
+    @FXML
+    private BarChart blanchissage;
 
     @FXML
     private Button stats_get_data;
@@ -176,7 +175,7 @@ public class Controller {
                     Person selectedPerson = player2.getSelectionModel().getSelectedItem();
                     pointsTable_col2.setText(selectedPerson.getLastName());
                 });
-        stats_get_data.setOnAction((event)->{
+        stats_get_data.setOnAction((event)-> {
             SQL_ctrler sc = new SQL_ctrler();
             GameStats gs = new GameStats();
             String pl1 = player1.getSelectionModel().getSelectedItem().getLastName();
@@ -207,8 +206,21 @@ public class Controller {
                             new PieChart.Data(pl1 + " " + Integer.toString(p1pts), p1pts),
                             new PieChart.Data(pl2 + " " + Integer.toString(p2pts), p2pts));
             pointsJoues.setData(pieChartData3);
-            }
-        );
+            XYChart.Series<String, Integer> series = gs.getDeltapoints();
+            series.setName("dPoints");
+            deltaPoints.getData().add(series);
+            XYChart.Series<String, Integer> series2 = gs.getDeltagames();
+            series2.setName("dGames");
+            deltaGames.getData().add(series2);
+            XYChart.Series<String, Integer> series3 = gs.getDeltamanches();
+            series3.setName("dManches");
+            deltaManches.getData().add(series3);
+            XYChart.Series<String, Integer> series4 = new XYChart.Series<>();
+            series4.setName("Blanchissage");
+            series4.getData().add(new XYChart.Data<>(pl1, gs.getPlayer1_blanchissage()));
+            series4.getData().add(new XYChart.Data<>(pl2, gs.getPlayer2_blanchissage()));
+            blanchissage.getData().add(series4);
+        });
 
         addToDB.setOnAction((event) -> {
             SQL_ctrler sql_ctrler = new SQL_ctrler();
