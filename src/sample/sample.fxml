@@ -60,7 +60,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane prefWidth="847.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
                               <VBox prefHeight="597.0" prefWidth="844.0">
                                  <children>
@@ -77,8 +77,8 @@
                                       </columnConstraints>
                                       <rowConstraints>
                                         <RowConstraints maxHeight="276.0" minHeight="276.0" prefHeight="276.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="276.0" minHeight="0.0" prefHeight="276.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="276.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="276.0" minHeight="276.0" prefHeight="276.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="276.0" minHeight="276.0" prefHeight="276.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
                                           <PieChart fx:id="partiesJoues" prefHeight="276.0" prefWidth="340.0" />
