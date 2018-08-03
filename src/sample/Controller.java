@@ -91,20 +91,10 @@ public class Controller {
                 pointsTable.setItems(game_score);
             }
         });
-//
-//        lastNameCol.setOnEditCommit(
-//                (TableColumn.CellEditEvent<Person, String> t) -> {
-//                    ((Person) t.getTableView().getItems().get(
-//                            t.getTablePosition().getRow())
-//                    ).setLastName(t.getNewValue());
-//                });
+
         pointsTable_col1.setOnEditCommit((TableColumn.CellEditEvent<GameScore, String> t) ->{
             ((GameScore) t.getTableView().getItems().get(t.getTablePosition().getRow())).setScore1(t.getNewValue());
         });
-//        pointsTable_col1.setOnEditCommit(event -> {
-//            GameScore edit_gs = pointsTable.getItems();
-//
-//        });
 
         player1.setItems(playerData);
         player1.setCellFactory((combobox) -> {
@@ -140,6 +130,9 @@ public class Controller {
             Person selectedPerson = player1.getSelectionModel().getSelectedItem();
             pointsTable_col1.setText(selectedPerson.getLastName());
         });
+        player1.getSelectionModel().select(1);
+        Person selectedPerson1 = player1.getSelectionModel().getSelectedItem();
+        pointsTable_col1.setText(selectedPerson1.getLastName());
 
         player2.setItems(playerData);
         player2.setCellFactory((combobox) -> {
@@ -175,6 +168,10 @@ public class Controller {
                     Person selectedPerson = player2.getSelectionModel().getSelectedItem();
                     pointsTable_col2.setText(selectedPerson.getLastName());
                 });
+        player2.getSelectionModel().select(0);
+        selectedPerson1 = player2.getSelectionModel().getSelectedItem();
+        pointsTable_col2.setText(selectedPerson1.getLastName());
+
         stats_get_data.setOnAction((event)-> {
             SQL_ctrler sc = new SQL_ctrler();
             GameStats gs = new GameStats();
