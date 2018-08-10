@@ -23,7 +23,7 @@
                </children></AnchorPane>
         </content>
       </TitledPane>
-      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="847.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+      <TabPane prefHeight="481.0" prefWidth="847.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
         <tabs>
           <Tab text="Add Match">
             <content>
