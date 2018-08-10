@@ -57,78 +57,16 @@
             </content>
           </Tab>
             <Tab text="Stats">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ScrollPane prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <content>
-                              <VBox prefHeight="597.0" prefWidth="844.0">
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                       <children>
-                                          <Button fx:id="stats_get_data" alignment="CENTER" layoutX="771.0" mnemonicParsing="false" text="Refresh" />
-                                       </children>
-                                    </AnchorPane>
-                                    <GridPane prefWidth="823.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints maxHeight="276.0" minHeight="276.0" prefHeight="276.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="276.0" minHeight="276.0" prefHeight="276.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="276.0" minHeight="276.0" prefHeight="276.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <PieChart fx:id="partiesJoues" prefHeight="276.0" prefWidth="340.0" />
-                                          <PieChart fx:id="manchesJoues" prefHeight="276.0" prefWidth="340.0" GridPane.columnIndex="1" />
-                                          <PieChart fx:id="pointsJoues" prefHeight="276.0" prefWidth="340.0" GridPane.columnIndex="2" />
-                                          <LineChart fx:id="deltaPoints" prefHeight="276.0" prefWidth="340.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                            <xAxis>
-                                              <CategoryAxis side="BOTTOM" />
-                                            </xAxis>
-                                            <yAxis>
-                                              <NumberAxis side="LEFT" />
-                                            </yAxis>
-                                          </LineChart>
-                                          <LineChart fx:id="deltaGames" prefHeight="276.0" prefWidth="340.0" GridPane.rowIndex="1">
-                                             <xAxis>
-                                                <CategoryAxis side="BOTTOM" />
-                                             </xAxis>
-                                             <yAxis>
-                                                <NumberAxis side="LEFT" />
-                                             </yAxis>
-                                          </LineChart>
-                                          <LineChart fx:id="deltaManches" prefHeight="276.0" prefWidth="340.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                             <xAxis>
-                                                <CategoryAxis side="BOTTOM" />
-                                             </xAxis>
-                                             <yAxis>
-                                                <NumberAxis side="LEFT" />
-                                             </yAxis>
-                                          </LineChart>
-                                          <BarChart fx:id="blanchissage" prefHeight="276.0" GridPane.rowIndex="2">
-                                            <xAxis>
-                                              <CategoryAxis side="BOTTOM" />
-                                            </xAxis>
-                                            <yAxis>
-                                              <NumberAxis side="LEFT" />
-                                            </yAxis>
-                                          </BarChart>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </AnchorPane>
-              </content>
+               <content>
+                  <fx:include source="stats.fxml" />
+               </content>
             </Tab>
           <Tab text="Player List">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <fx:include source="add_name.fxml" />
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
