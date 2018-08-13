@@ -13,4 +13,8 @@ public class Person {
     public String getLastName(){
         return name.get();
     }
+
+    public void setLastName(String lastName){
+        name.setValue(lastName);
+    }
 }

@@ -40,12 +40,12 @@ public class StatsController {
     @FXML
     private void initialize(){
 
-        
+
         stats_get_data.setOnAction((event)-> {
             SQL_ctrler sc = new SQL_ctrler();
             GameStats gs = new GameStats();
-            String pl1 = "test";
-            String pl2 = "test";
+            String pl1 = Context.getInstance().currentPlayer1().getLastName();
+            String pl2 = Context.getInstance().currentPlayer2().getLastName();
             gs = sc.getGame(pl1, pl2);
             int p1m = gs.getPlayer1_manches();
             int p2m = gs.getPlayer2_manches();

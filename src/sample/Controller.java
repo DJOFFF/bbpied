@@ -109,6 +109,7 @@ public class Controller {
         player1.setOnAction((event)->{
             Person selectedPerson = player1.getSelectionModel().getSelectedItem();
             pointsTable_col1.setText(selectedPerson.getLastName());
+            Context.getInstance().currentPlayer1().setLastName(selectedPerson.getLastName());
         });
         player1.getSelectionModel().select(1);
         Person selectedPerson1 = player1.getSelectionModel().getSelectedItem();
@@ -147,6 +148,7 @@ public class Controller {
         player2.setOnAction((event)-> {
                     Person selectedPerson = player2.getSelectionModel().getSelectedItem();
                     pointsTable_col2.setText(selectedPerson.getLastName());
+                    Context.getInstance().currentPlayer2().setLastName(selectedPerson.getLastName());
                 });
         player2.getSelectionModel().select(0);
         selectedPerson1 = player2.getSelectionModel().getSelectedItem();
